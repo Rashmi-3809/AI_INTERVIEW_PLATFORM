@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Signup</title>
+</head>
+
+<body>
+
+<h2>Create Account</h2>
+
+<input id="username" placeholder="Enter Username"><br><br>
+<input id="password" type="password" placeholder="Enter Password"><br><br>
+
+<button onclick="signup()">Signup</button>
+
+<script>
+async function signup(){
+
+let username = document.getElementById("username").value
+let password = document.getElementById("password").value
+
+let response = await fetch("http://127.0.0.1:5000/signup",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({username,password})
+})
+
+let data = await response.json()
+
+alert(data.message)
+
+}
+
+</script>
+
+</body>
+
+</html>

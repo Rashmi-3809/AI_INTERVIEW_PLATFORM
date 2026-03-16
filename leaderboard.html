@@ -1,0 +1,40 @@
+<h2>Leaderboard</h2>
+
+<table border="1">
+<thead>
+<tr>
+<th>Username</th>
+<th>Score</th>
+</tr>
+</thead>
+
+<tbody id="leaderboard"></tbody>
+
+</table>
+
+<script>
+
+async function loadLeaderboard(){
+
+let response = await fetch("http://127.0.0.1:5000/leaderboard")
+
+let data = await response.json()
+
+let table = document.getElementById("leaderboard")
+
+data.forEach(user => {
+
+table.innerHTML += `
+<tr>
+<td>${user[0]}</td>
+<td>${user[1]}</td>
+</tr>
+`
+
+})
+
+}
+
+loadLeaderboard()
+
+</script>

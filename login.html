@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Login</title>
+</head>
+
+<body>
+
+<h2>Login</h2>
+
+<input type="text" id="username" placeholder="Username"><br><br>
+
+<input type="password" id="password" placeholder="Password"><br><br>
+
+<button onclick="login()">Login</button>
+
+<script>
+
+async function login(){
+
+let username = document.getElementById("username").value
+let password = document.getElementById("password").value
+
+let response = await fetch("http://127.0.0.1:5000/login",{
+method:"POST",
+headers:{
+"Content-Type":"application/json"
+},
+body:JSON.stringify({username,password})
+})
+
+let data = await response.json()
+
+if(data.message === "Login successful"){
+
+localStorage.setItem("username", username)
+
+window.location.href="index.html"
+
+}
+else{
+alert("Invalid username or password")
+}
+
+}
+
+</script>
+
+</body>
+</html>
